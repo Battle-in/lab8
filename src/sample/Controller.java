@@ -1,7 +1,11 @@
 package sample;
 
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -26,8 +30,18 @@ public class Controller {
 
     @FXML
     void initialize() {
-        tex.setText("");
+        DataBase db = new DataBase();
+        EventHandler event = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                tex.setText(db.getData(fild.getText()));
+            }
+        };
         
+        tex.setText("");
+        but.setOnAction(event);
+        fild.setOnAction(event);
     }
 }
+
 
