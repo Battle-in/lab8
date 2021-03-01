@@ -38,7 +38,6 @@ public class DataBase implements Dao{
                 res = "запись по этой проффесии не найдена";
             }
             resSet.close();
-            System.out.println(res);
             return res;
         } catch (SQLException e){
             e.printStackTrace();

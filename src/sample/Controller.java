@@ -1,6 +1,7 @@
 package sample;
 
 import java.awt.event.ActionEvent;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -34,10 +35,19 @@ public class Controller {
         EventHandler event = new EventHandler() {
             @Override
             public void handle(Event event) {
-                tex.setText(db.getData(fild.getText()));
+                String old = tex.getText();
+                String now = db.getData(fild.getText());
+                if (old.contains(now)) {
+                    String[] a = old.split("]");
+                    if (a.length == 1)
+                        now += "]2";
+                    else
+                        now += "]" + Integer.toString((Integer.parseInt(a[1]) + 1));
+                }
+                tex.setText(now);
             }
         };
-        
+
         tex.setText("");
         but.setOnAction(event);
         fild.setOnAction(event);
