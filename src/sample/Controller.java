@@ -39,7 +39,17 @@ public class Controller {
 
                 String res = reword(tex.getText(), db.getData(fild.getText()));
 
-                //white box test
+                //white box tests
+                if (res.equals("error") && !fild.getText().isEmpty())
+                    res = "удалите недопустимые символы";
+
+
+                if (fild.getText().isEmpty()){
+                    if (res.equals("error"))
+                        res = "Введите запрос в поле";
+                        fild.setText("Сюда");
+                }
+
                 if (res.length() <= 86)
                     if (!res.isEmpty())
                         tex.setText(res);
